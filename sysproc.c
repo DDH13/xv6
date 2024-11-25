@@ -89,3 +89,17 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+// return the year when Unix was created
+int
+sys_getyear(void)
+{
+  return 1975;
+}
+
+// return the size of the address space
+int
+sys_getmysize(void)
+{
+  return myproc()->sz;
+}
