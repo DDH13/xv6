@@ -103,3 +103,33 @@ sys_getmysize(void)
 {
   return myproc()->sz;
 }
+
+// return the starting vritual address of the kernel area
+int 
+sys_getkernelstartaddr(void)
+{
+  return KERNBASE;
+}
+
+// return the ending virtual address of the kernel area
+int
+sys_getkernelendaddr(void)
+{
+  return KERNBASE + PHYSTOP;
+}
+
+// Create an int variable and return its address
+int
+sys_getkernelvariaddr(void)
+{
+  int a = 420;
+  int b = (int) &a;
+  return b;
+}
+
+// return the address of the sys_fork system call
+int
+sys_getsytemcalladdr(void)
+{
+  return (int) sys_fork;
+}

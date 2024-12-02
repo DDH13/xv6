@@ -29,5 +29,11 @@ SYSCALL(getpid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
+
 SYSCALL(getyear)
 SYSCALL(getmysize)
+
+SYSCALL(getkernelstartaddr)
+SYSCALL(getkernelendaddr)
+SYSCALL(getkernelvariaddr)
+SYSCALL(getsytemcalladdr)
