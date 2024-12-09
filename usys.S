@@ -37,3 +37,5 @@ SYSCALL(getkernelstartaddr)
 SYSCALL(getkernelendaddr)
 SYSCALL(getkernelvariaddr)
 SYSCALL(getsytemcalladdr)
+
+SYSCALL(setpriority)

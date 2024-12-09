@@ -133,3 +133,14 @@ sys_getsytemcalladdr(void)
 {
   return (int) sys_fork;
 }
+
+// take an integer and set priority of a process and stop ones with priority 2 from running
+int
+sys_setpriority(int priority){
+  if(argint(0, &priority) < 0)
+    return -1;
+  else if(priority < 0 || priority > 2)
+    return -1;
+  myproc()->priority = priority;
+  return 0;
+}
