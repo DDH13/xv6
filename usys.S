@@ -39,3 +39,5 @@ SYSCALL(getkernelvariaddr)
 SYSCALL(getsytemcalladdr)
 
 SYSCALL(setpriority)
+
+SYSCALL(getinodesize)

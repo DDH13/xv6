@@ -114,6 +114,8 @@ extern int sys_getsytemcalladdr(void);
 
 extern int sys_setpriority(void);
 
+extern int sys_getinodesize(void);
+
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
@@ -146,6 +148,8 @@ static int (*syscalls[])(void) = {
 [SYS_getsytemcalladdr] sys_getsytemcalladdr,
 
 [SYS_setpriority] sys_setpriority,
+
+[SYS_getinodesize] sys_getinodesize,
 };
 
 void

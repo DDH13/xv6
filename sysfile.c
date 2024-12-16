@@ -442,3 +442,22 @@ sys_pipe(void)
   fd[1] = fd1;
   return 0;
 }
+
+// Should take the path to any
+// directory as a string and return the size of the relevant inode in bytes.
+
+int 
+sys_getinodesize(void)
+{
+  char *path;
+  struct inode *ip;
+
+  if(argstr(0, &path) < 0 || (ip = namei(path)) == 0){
+    return -1;
+  }
+  ilock(ip);
+  int size = ip->size;
+  iunlock(ip);
+  return size;
+
+}

@@ -30,6 +30,7 @@ int getkernelendaddr(void);
 int getkernelvariaddr(void);
 int getsytemcalladdr(void);
 int setpriority(int);
+int getinodesize(char*);
 
 // ulib.c
 int stat(const char*, struct stat*);

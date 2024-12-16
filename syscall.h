@@ -30,3 +30,5 @@
 #define SYS_getsytemcalladdr 27
 
 #define SYS_setpriority 28
+
+#define SYS_getinodesize 29
