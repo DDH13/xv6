@@ -6,6 +6,7 @@
 #include "fcntl.h"
 
 char *argv[] = { "sh", 0 };
+char *argv2[] = { "mybackgroundservice", 0 };
 
 int
 main(void)
@@ -18,6 +19,12 @@ main(void)
   }
   dup(0);  // stdout
   dup(0);  // stderr
+
+ if(fork() == 0){
+    exec("mybackgroundservice", argv2);
+    printf(1, "init: exec mybackgroundservice failed\n");
+    exit();
+  }
 
   for(;;){
     printf(1, "init: starting sh\n");
