@@ -186,6 +186,7 @@ UPROGS=\
 	_mypriority\
 	_myinodesize\
 	_mybackgroundservice\
+	_myps\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
@@ -258,7 +259,7 @@ EXTRA=\
 	printf.c umalloc.c\
 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
-	myprog.c myprocesssize.c _mykerneladdr.c mypriority.c myinodesize.c mybackgroundservice.c\
+	myprog.c myprocesssize.c _mykerneladdr.c mypriority.c myinodesize.c mybackgroundservice.c myps.c\
 
 dist:
 	rm -rf dist

@@ -41,3 +41,5 @@ SYSCALL(getsytemcalladdr)
 SYSCALL(setpriority)
 
 SYSCALL(getinodesize)
+
+SYSCALL(mycall)

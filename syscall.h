@@ -32,3 +32,5 @@
 #define SYS_setpriority 28
 
 #define SYS_getinodesize 29
+
+#define SYS_mycall 30

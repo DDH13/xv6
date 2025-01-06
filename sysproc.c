@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "spinlock.h"
 
 int
 sys_fork(void)
@@ -143,4 +144,54 @@ sys_setpriority(int priority){
     return -1;
   myproc()->priority = priority;
   return 0;
+}
+
+extern struct {
+    struct spinlock lock;
+    struct proc proc[NPROC];
+} ptable;
+
+struct procinfo {
+    int pid;
+    int ppid;
+    int state;
+    uint sz;        
+    char name[16];  
+};
+
+int sys_mycall(void) {
+    int size;
+    char *buf;
+
+    if ((argint(0, &size) < 0) || (argptr(1, &buf, size) < 0)) {
+        return -1;
+    }
+
+    struct procinfo *pinfo = (struct procinfo *)buf;
+    struct proc *p;
+    int count = 0;
+
+    acquire(&ptable.lock);
+
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+
+        // Check if there's enough space in the buffer
+        if ((count + 1) * sizeof(struct procinfo) > size) {
+            release(&ptable.lock);
+            return count; 
+        }
+
+        // Populate the procinfo struct
+        pinfo[count].pid = p->pid;
+        pinfo[count].ppid = (p->parent) ? p->parent->pid : -1;
+        pinfo[count].state = p->state;
+        pinfo[count].sz = p->sz;
+        safestrcpy(pinfo[count].name, p->name, sizeof(pinfo[count].name));
+
+        count++;
+    }
+
+    release(&ptable.lock); 
+
+    return count; 
 }
